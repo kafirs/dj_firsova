@@ -1,0 +1,49 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+require(dplyr)
+require(ggplot2)
+library(nycflights13)
+flights %>%
+  #—творюЇмо нову колонку, €ка показуЇ затримку л≥так≥в
+  mutate(air_delay = arr_delay - dep_delay) %>%
+  
+  #√раф≥к залежност≥ затримки л≥так≥в в≥д м≥с€ц€: у липн≥ л≥таки найчаст≥ше затримувались, в той час €к у лютому найчаст≥ше вил≥тали ран≥ше заплановаго часу
+  ggplot(aes(x = month, y = air_delay)) + geom_point(alpha = 1, color = "gray", size = 2)
+
+View()
+  
+``` 
+  
+```{r}
+require(dplyr)
+require(ggplot2)
+library(nycflights13)
+flights %>%
+  #—творюЇмо нову колонку, €ка показуЇ затримку л≥так≥в
+  mutate(air_delay = arr_delay - dep_delay) %>%
+  
+  #√раф≥к залежност≥ затримки в≥д дн€ вильоту (дн€ тижн€): найчаст≥ше л≥таки затримувались у 22-ий день щом≥с€ц€, найчаст≥ше л≥таки вил≥тали ран≥ше запланованого часу у 13-й день щом≥с€ц€
+  ggplot(aes(x = day, y = air_delay)) + geom_point(alpha = 1, color = "gray", size = 2)
+
+View()
+
+```
+
+```{r}
+require(dplyr)
+require(ggplot2)
+library(nycflights13)
+flights %>%
+  #—творюЇмо нову колонку, €ка показуЇ затримку л≥так≥в
+  mutate(air_delay = arr_delay - dep_delay) %>%
+  
+  #√раф≥к залежност≥ затримки в≥д часу доби: найчаст≥ше затримувались л≥таки, що за розкладом мали в≥дправл€тись о 16 годин≥, найчаст≥ше вил≥тали ран≥ше запланованого часу л≥таки, що мали в≥дправл€тись о 9 та 19 годинах 
+  ggplot(aes(x = dep_time, y = air_delay)) + geom_point(alpha = 1, color = "gray", size = 2)
+
+View()
+  
+``` 

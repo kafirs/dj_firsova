@@ -1,0 +1,51 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+require(dplyr)
+require(ggplot2)
+library(nycflights13)
+flights %>%
+  #Створюємо нову колонку, яка показує затримку літаків
+  mutate(air_delay = arr_delay - dep_delay) %>%
+  
+  #Графік залежності затримки літаків від місяця: у липні літаки найчастіше затримувались, в той час як у лютому найчастіше вилітали раніше заплановаго часу
+  ggplot(aes(x = month, y = air_delay)) + geom_point(alpha = 1, color = "gray", size = 2)
+
+View()
+  
+``` 
+  
+```{r}
+require(dplyr)
+require(ggplot2)
+library(nycflights13)
+flights %>%
+  #Створюємо нову колонку, яка показує затримку літаків
+  mutate(air_delay = arr_delay - dep_delay) %>%
+  
+  #Графік залежності затримки від дня вильоту (дня тижня): найчастіше літаки затримувались у 22-ий день щомісяця, найчастіше літаки вилітали раніше запланованого часу у 13-й день щомісяця
+  ggplot(aes(x = day, y = air_delay)) + geom_point(alpha = 1, color = "gray", size = 2)
+
+View()
+
+```
+
+```{r}
+require(dplyr)
+require(ggplot2)
+library(nycflights13)
+flights %>%
+  #Створюємо нову колонку, яка показує затримку літаків
+  mutate(air_delay = arr_delay - dep_delay) %>%
+  
+  #Графік залежності затримки від часу доби: найчастіше затримувались літаки, що за розкладом мали відправлятись о 16 годині, найчастіше вилітали раніше запланованого часу літаки, що мали відправлятись о 9 та 19 годинах 
+  ggplot(aes(x = dep_time, y = air_delay)) + geom_point(alpha = 1, color = "gray", size = 2)
+
+View()
+  
+``` 
